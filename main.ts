@@ -1,5 +1,5 @@
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    if (Bf > BfMin && Bf < BfMax) {
+    if (pins.analogReadPin(AnalogPin.P0) > BfMin && pins.analogReadPin(AnalogPin.P0) < BfMax) {
         basic.showLeds(`
             # . . . .
             . # . # .
@@ -20,7 +20,7 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     }
 })
 input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
-    if (Temp > TempMin && Temp < TempMax) {
+    if (input.temperature() > TempMin && input.temperature() < TempMax) {
         basic.showLeds(`
             . . . . #
             . # . # .
@@ -41,7 +41,7 @@ input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
     }
 })
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    if (Hell > HellMin && Hell < HellMax) {
+    if (input.lightLevel() > HellMin && input.lightLevel() < HellMax) {
         basic.showLeds(`
             . . # . .
             . # . # .
@@ -61,9 +61,6 @@ input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
         basic.setLedColor(0xff0000)
     }
 })
-let Hell = 0
-let Temp = 0
-let Bf = 0
 let TempMax = 0
 let TempMin = 0
 let BfMax = 0
@@ -76,18 +73,32 @@ BfMin = 20
 BfMax = 70
 TempMin = 15
 TempMax = 25
+basic.showIcon(IconNames.SmallHeart)
 basic.forever(function () {
+    basic.showIcon(IconNames.Heart)
     basic.setLedColor(0x000000)
-    Bf = pins.analogReadPin(AnalogPin.P0)
-    Hell = input.lightLevel()
-    Temp = input.temperature()
-    basic.showString("BF: ")
-    basic.showString("" + (Bf))
-    basic.showString("%")
-    basic.showString("He: ")
-    basic.showString("" + (Hell))
-    basic.showString("%")
-    basic.showString("T: ")
-    basic.showString("" + (Temp))
-    basic.showString("°C")
+    basic.showLeds(`
+        # . # . #
+        . # # # .
+        # # # # #
+        . # # # .
+        # . # . #
+        `)
+    basic.showString("" + (input.lightLevel()))
+    basic.showLeds(`
+        # # # # #
+        . . # . .
+        . . # . .
+        . . # . .
+        . . # . .
+        `)
+    basic.showString("" + (input.temperature()))
+    basic.showLeds(`
+        . . # . .
+        . . # . .
+        . # # # .
+        . # # # .
+        . . # . .
+        `)
+    basic.showString("" + (pins.analogReadPin(AnalogPin.P1)))
 })
