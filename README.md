@@ -1,5 +1,5 @@
 
-> Diese Seite bei [https://fabmobil.github.io/calliope-pflanzensensor/](https://fabmobil.github.io/calliope-pflanzensensor/) öffnen
+> Diese Seite bei [https://Fabmobil.github.io/calliope-pflanzensensor/](https://Fabmobil.github.io/calliope-pflanzensensor/) öffnen
 
 ## Als Erweiterung verwenden
 
